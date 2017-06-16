@@ -46,7 +46,7 @@ class DoctorController extends Controller
                 $this->view($this->_controller, 'page-user');
 
                 $this->set('assets', ASSETS);
-                $this->set('user', $_SESSION['nom']);
+                $this->set('user', $_SESSION['user']);
                 $this->set('first_name', $_SESSION['nom']);
                 $this->set('last_name',$_SESSION['prenom']);
                 $this->set('home_phone',$_SESSION['home_phone']);
