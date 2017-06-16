@@ -63,7 +63,7 @@
             <div class="user-panel">
                 <div class="pull-left image"><img class="img-circle" src="<?= $assets?>/views/doctor/images/doctor4.jpg" alt="User Image"></div>
                 <div class="pull-left info">
-                    <p>Dr. <?= $full_name ?></p>
+                    <p>Dr. <?=  $first_name?> <?=  $last_name?></p>
                     <p class="designation"><?=$spec?></p>
                 </div>
             </div>
@@ -84,8 +84,8 @@
                 <div class="profile">
                     <div class="info"><img class="user-img"
                                            src="<?= $assets?>/views/doctor/images/doctor4.jpg">
-                        <h4>John Doe</h4>
-                        <p>FrontEnd Developer</p>
+                        <h4>Dr. <?=  $first_name?> <?=  $last_name?></h4>
+                        <p class="designation"><?=$spec?></p>
                     </div>
                     <div class="cover-image" style="background-image: url('<?= $assets?>/views/doctor/images/cover.jpg')"></div>
                 </div>
@@ -134,41 +134,41 @@
                     <div class="tab-pane active" id="user-settings">
                         <div class="card user-settings">
                             <h4 class="line-head">Settings</h4>
-                            <form method="post" action="">
+                            <form class="form-user" method="" action="">
                                 <div class="row mb-20">
                                     <div class="col-md-4">
                                         <label>First Name</label>
-                                        <input class="form-control" type="text">
+                                        <input name="first_name" class="form-control" type="text" value="<?=$first_name?>">
                                     </div>
                                     <div class="col-md-4">
                                         <label>Last Name</label>
-                                        <input class="form-control" type="text">
+                                        <input name="last_name" class="form-control" type="text" value="<?=$last_name?>">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8 mb-20">
                                         <label>Email</label>
-                                        <input class="form-control" type="text">
+                                        <input name="email" class="form-control" type="text" value="<?=$user?>">
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-8 mb-20">
-                                        <label>Mobile No</label>
-                                        <input class="form-control" type="text">
+                                        <label>Address</label>
+                                        <input name="address" class="form-control" type="text" value="<?=$adress?>">
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-8 mb-20">
-                                        <label>Office Phone</label>
-                                        <input class="form-control" type="text">
+                                        <label>Mobile Number</label>
+                                        <input name="office" class="form-control" type="text" value="<?=$mobil?>">
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-8 mb-20">
                                         <label>Home Phone</label>
-                                        <input class="form-control" type="text">
+                                        <input name="home" class="form-control" type="text" value="<?=$home_phone?>">
                                     </div>
                                 </div>
                                 <div class="row mb-10">
                                     <div class="col-md-12">
-                                        <button class="btn btn-primary" type="button"><i
+                                        <button class="btn btn-primary" id ="btn-save-user" type="button"><i
                                                 class="fa fa-fw fa-lg fa-check-circle"></i> Save
                                         </button>
                                     </div>
@@ -186,5 +186,6 @@
 <script src="<?= $assets?>/views/doctor/js/bootstrap.min.js"></script>
 <script src="<?= $assets?>/views/doctor/js/plugins/pace.min.js"></script>
 <script src="<?= $assets?>/views/doctor/js/main.js"></script>
+<script src="<?= $assets?>/views/assets/ajaxquery/sendinfo.js"></script>
 </body>
 </html>

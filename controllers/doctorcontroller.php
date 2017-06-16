@@ -24,7 +24,7 @@ class DoctorController extends Controller
                 $this->view($this->_controller, $this->_action);
                 $this->set('assets', ASSETS);
                 $this->set('full_name', $_SESSION['nom'] . ' ' . $_SESSION['prenom']);
-                $this->set('spec',$_SESSION['type']);
+                $this->set('spec', $_SESSION['type']);
                 $this->runView();
             } else {
                 session_destroy();
@@ -44,10 +44,17 @@ class DoctorController extends Controller
         if (isset($_SESSION['auth'])) {
             if ($_SESSION['auth'] === 'auth') {
                 $this->view($this->_controller, 'page-user');
+
                 $this->set('assets', ASSETS);
-                $this->set('full_name', $_SESSION['nom'] . ' ' . $_SESSION['prenom']);
-                $this->set('spec',$_SESSION['type']);
+                $this->set('user', $_SESSION['nom']);
+                $this->set('first_name', $_SESSION['nom']);
+                $this->set('last_name',$_SESSION['prenom']);
+                $this->set('home_phone',$_SESSION['home_phone']);
+                $this->set('adress',$_SESSION['adress'] );
+                $this->set('mobil',$_SESSION['mobil']);
+                $this->set('spec', $_SESSION['type']);
                 $this->runView();
+
             } else {
                 session_destroy();
                 $this->view($this->_controller, 'login');
@@ -73,7 +80,7 @@ class DoctorController extends Controller
                 $this->set('assets', ASSETS);
                 $this->set('list', $res);
                 $this->set('full_name', $_SESSION['nom'] . ' ' . $_SESSION['prenom']);
-                $this->set('spec',$_SESSION['type']);
+                $this->set('spec', $_SESSION['type']);
                 $this->runView();
             } else {
                 session_destroy();
@@ -81,7 +88,7 @@ class DoctorController extends Controller
                 $this->set('assets', ASSETS);
                 $this->runView();
             }
-        }else{
+        } else {
             $this->view($this->_controller, 'login');
             $this->set('assets', ASSETS);
             $this->runView();
@@ -96,7 +103,7 @@ class DoctorController extends Controller
                 $this->view($this->_controller, 'page-Modifier-Ordonance');
                 $this->set('assets', ASSETS);
                 $this->set('full_name', $_SESSION['nom'] . ' ' . $_SESSION['prenom']);
-                $this->set('spec',$_SESSION['type']);
+                $this->set('spec', $_SESSION['type']);
                 $this->runView();
             } else {
                 session_destroy();
@@ -119,7 +126,7 @@ class DoctorController extends Controller
                 $this->view($this->_controller, 'page-Cree-ordonance');
                 $this->set('assets', ASSETS);
                 $this->set('full_name', $_SESSION['nom'] . ' ' . $_SESSION['prenom']);
-                $this->set('spec',$_SESSION['type']);
+                $this->set('spec', $_SESSION['type']);
                 $this->runView();
             } else {
                 session_destroy();
@@ -141,7 +148,7 @@ class DoctorController extends Controller
             if ($_SESSION['auth'] === 'auth') {
                 $this->view($this->_controller, 'page-Map');
                 $this->set('full_name', $_SESSION['nom'] . ' ' . $_SESSION['prenom']);
-                $this->set('spec',$_SESSION['type']);
+                $this->set('spec', $_SESSION['type']);
                 $this->set('assets', ASSETS);
                 $this->runView();
             } else {
@@ -164,7 +171,7 @@ class DoctorController extends Controller
             if ($_SESSION['auth'] === 'auth') {
                 $this->view($this->_controller, 'page-calendar');
                 $this->set('full_name', $_SESSION['nom'] . ' ' . $_SESSION['prenom']);
-                $this->set('spec',$_SESSION['type']);
+                $this->set('spec', $_SESSION['type']);
                 $this->set('assets', ASSETS);
                 $this->runView();
             } else {
@@ -215,8 +222,11 @@ class DoctorController extends Controller
                         $_SESSION['user'] = $res['user'];
                         $_SESSION['nom'] = $res['nom'];
                         $_SESSION['prenom'] = $res['prenom'];
-                        $_SESSION['type']=$res['type'];
-                        //$_SESSION['nom']=$res['nom'];
+                        $_SESSION['type'] = $res['type'];
+                        $_SESSION['home_phone'] = $res['home_phone'];
+                        $_SESSION['adress'] = $res['adress'];
+                        $_SESSION['mobil'] = $res['mobil'];
+
                         $url = ASSETS . '/doctor/index';
                         $time = time() + 60 * 60 * 24 * 1000;
                         setcookie('Metou', $res['id'], $time);
@@ -233,6 +243,17 @@ class DoctorController extends Controller
             $this->runView();
         }
 
+    }
+
+    public function ajax()
+    {
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $mobil = $_POST['mobil'];
+        $address=$_POST['address'];
+
+        echo json_encode(["repense"=>"OK"]);
     }
 
 
