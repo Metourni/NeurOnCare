@@ -115,7 +115,6 @@ class DoctorModel extends Model
             $result = $this->_cnx->query($statment);
             $this->close();
             if ($result->num_rows > 0) {
-                return $result->fetch_assoc();
             } else {
                 return false;
             }
@@ -124,17 +123,25 @@ class DoctorModel extends Model
         }
     }
 
-    public function getRDVs($id)
+
+
+    //=================
+    //      RDV
+    //=================
+    public function getRDVs($idMed,$idPat)
     {
         $db = $this::connection();
         if ($db !== false) {
             $statment = "SELECT * 
-                         FROM rdv
-                         WHERE id='$id'";
+                         FROM RDV
+                         WHERE idMed='$idMed' AND  idPat='$idPat'";
             $result = $this->_cnx->query($statment);
             $this->close();
             if ($result->num_rows > 0) {
-                return $result->fetch_assoc();
+                while ($row = $result->fetch_array()) {
+                    $rows[] = $row;
+                }
+                return $rows;
             } else {
                 return false;
             }
@@ -144,13 +151,82 @@ class DoctorModel extends Model
 
     }
 
-    public function setRDV($id, $rdv)
+    public function setRDV($idMed, $idPat, $title, $startdate, $enddate, $allDay)
     {
         $db = $this::connection();
         if ($db !== false) {
             $statment = "INSERT 
-                         INTO rdv
-                         VALUES $rdv
+                         INTO RDV
+                         VALUES (NULL,'$idMed','$idPat','$title','$startdate','$enddate','$allDay')";
+            $result = $this->_cnx->query($statment);
+            $lastid = mysqli_insert_id($this->_cnx);
+            $this->close();
+            if ($result === true) {
+                return $lastid;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
+    }
+
+    public function updateRDVTitle($id, $title)
+    {
+        $db = $this::connection();
+        if ($db !== false) {
+            $statment = "UPDATE RDV 
+                         SET title = '$title'
+                         WHERE idRDV='$id'
+            ";
+            $result = $this->_cnx->query($statment);
+            $this->close();
+            if ($result === true) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteRDV($id){
+        $db = $this::connection();
+        if ($db !== false) {
+            $statment = "DELETE FROM RDV 
+                         WHERE idRDV='$id'
+            ";
+            $result = $this->_cnx->query($statment);
+            $this->close();
+            if ($result === true) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    //=================
+    //
+    //=================
+
+
+
+    public function getOrd($id)
+    {
+
+    }
+
+    public function updateProfile($id, $first_name, $last_name, $email, $mobil, $address, $home_phone)
+    {
+        $db = $this::connection();
+        if ($db !== false) {
+            $statment = "UPDATE Medecin 
+                         SET user='$email',nom='$first_name',prenom='$last_name',home_phone='$home_phone',adress='$address',mobil='$mobil'
                          WHERE id='$id'";
             $result = $this->_cnx->query($statment);
             $this->close();
@@ -162,11 +238,6 @@ class DoctorModel extends Model
         } else {
             return false;
         }
-
-    }
-
-    public function getOrd($id)
-    {
 
     }
 

@@ -48,10 +48,10 @@ class DoctorController extends Controller
                 $this->set('assets', ASSETS);
                 $this->set('user', $_SESSION['user']);
                 $this->set('first_name', $_SESSION['nom']);
-                $this->set('last_name',$_SESSION['prenom']);
-                $this->set('home_phone',$_SESSION['home_phone']);
-                $this->set('adress',$_SESSION['adress'] );
-                $this->set('mobil',$_SESSION['mobil']);
+                $this->set('last_name', $_SESSION['prenom']);
+                $this->set('home_phone', $_SESSION['home_phone']);
+                $this->set('adress', $_SESSION['adress']);
+                $this->set('mobil', $_SESSION['mobil']);
                 $this->set('spec', $_SESSION['type']);
                 $this->runView();
 
@@ -245,16 +245,88 @@ class DoctorController extends Controller
 
     }
 
-    public function ajax()
+    public function ajaxUpdateProfile()
     {
         $first_name = $_POST['first_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
         $mobil = $_POST['mobil'];
-        $address=$_POST['address'];
+        $address = $_POST['address'];
+        $home_phone = $_POST['home_phone'];
+        $res = $this->_model->updateProfile($_SESSION['id'], $first_name, $last_name, $email, $mobil, $address, $home_phone);
 
-        echo json_encode(["repense"=>"OK"]);
+        if ($res)
+            echo json_encode(["repense" => "OK"]);
+        else
+            echo json_encode(["repense" => "failed"]);
     }
+
+
+
+    //=================
+    //      RDV
+    //=================
+
+    public function ajaxAddCalender()
+    {
+        $idMed = $_SESSION['id'];
+        $idPat = $_POST['idpatient'];
+        $title = $_POST['title'];
+        $startdate = $_POST['startdate'] . '+' . $_POST['zone'];
+        $enddate = $startdate;
+        $allDay = false;//$_POST[''];
+
+        $res = $this->_model->setRDV($idMed, $idPat, $title, $startdate, $enddate, $allDay);
+        if ($res !== false)
+            echo json_encode(["status" => "success", 'eventid' => $res]);
+        else
+            echo json_encode(["status" => "failed"]);
+        //echo json_encode(["status"=>"success"]);
+    }
+
+    public function ajaxCalenderUpdateTitle(){
+        $eventid=$_POST['eventid'];
+        $title=$_POST['title'];
+        $res = $this->_model->updateRDVTitle($eventid, $title);
+        if ($res !== false)
+            echo json_encode(["status" => "success", 'eventid' => $res]);
+        else
+            echo json_encode(["status" => "failed"]);
+    }
+
+    public function ajaxCalenderGetAllEvent(){
+        $idMed=$_SESSION['id'];
+        $idPat=$_POST['idpat'];
+
+        $events = $this->_model->getRDVs($idMed,$idPat);
+        $response=array();
+        foreach ($events as $event){
+            $temp=array();
+            $temp['id'] = $event['idRDV'];
+            $temp['title'] = $event['title'];
+            $temp['start'] = $event['startdate'];
+            $temp['end'] = $event['enddate'];
+            $allday = ($event['allDay'] == "true") ? true : false;
+            $temp['allDay'] = $allday;
+
+            array_push($response, $temp);
+        }
+
+        echo json_encode($response);
+
+    }
+    public function ajaxCalenderDeleteEvent(){
+        $idEvent = $_POST['eventid'];
+        $res = $this->_model->deleteRDV($idEvent);
+        if($res)
+            echo json_encode(array('status'=>'success'));
+        else
+            echo json_encode(array('status'=>'failed'));
+    }
+
+    //=================
+    //    END RDV
+    //=================
 
 
 }

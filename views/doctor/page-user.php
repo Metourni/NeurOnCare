@@ -107,18 +107,18 @@
                                 <div class="row">
                                     <div class="col-md-8 mb-20">
                                         <label>Ancien mot de passe</label>
-                                        <input class="form-control" name="password-old" type="password">
+                                        <input name="old_password"class="form-control" name="password-old" type="password">
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="row mb-20">
                                     <div class="col-md-4">
                                         <label>Nouveau mot de pass</label>
-                                        <input class="form-control" name="password-new" type="password">
+                                        <input name="new_password" class="form-control" name="password-new" type="password">
                                     </div>
                                     <div class="col-md-4">
                                         <label>Nouveau mot de pass</label>
-                                        <input class="form-control" name="password-new2" type="password">
+                                        <input name="new_password" class="form-control" name="password-new2" type="password">
                                     </div>
                                 </div>
                                 <div class="row mb-10">
@@ -138,32 +138,32 @@
                                 <div class="row mb-20">
                                     <div class="col-md-4">
                                         <label>First Name</label>
-                                        <input name="first_name" class="form-control" type="text" value="<?=$first_name?>">
+                                        <input id="first_name" name="first_name" class="form-control" type="text" value="<?=$first_name?>">
                                     </div>
                                     <div class="col-md-4">
                                         <label>Last Name</label>
-                                        <input name="last_name" class="form-control" type="text" value="<?=$last_name?>">
+                                        <input id="last_name"  name="last_name" class="form-control" type="text" value="<?=$last_name?>">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8 mb-20">
                                         <label>Email</label>
-                                        <input name="email" class="form-control" type="text" value="<?=$user?>">
+                                        <input id="email" name="email" class="form-control" type="text" value="<?=$user?>">
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-8 mb-20">
                                         <label>Address</label>
-                                        <input name="address" class="form-control" type="text" value="<?=$adress?>">
+                                        <input id="address" name="address" class="form-control" type="text" value="<?=$adress?>">
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-8 mb-20">
                                         <label>Mobile Number</label>
-                                        <input name="office" class="form-control" type="text" value="<?=$mobil?>">
+                                        <input id="mobil" name="mobil" class="form-control" type="text" value="<?=$mobil?>">
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-md-8 mb-20">
                                         <label>Home Phone</label>
-                                        <input name="home" class="form-control" type="text" value="<?=$home_phone?>">
+                                        <input id="home_phone" name="home_phone" class="form-control" type="text" value="<?=$home_phone?>">
                                     </div>
                                 </div>
                                 <div class="row mb-10">

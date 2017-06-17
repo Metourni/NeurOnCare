@@ -126,10 +126,10 @@
                                     echo "<td>" . age($element['dateNaissace']) . "</td>";
                                     echo "<td>" . $element['maladie'] . "</td>";
                                     echo "<td>" . '<div>
-                                                        <a class="btn btn-primary btn-flat" data-toggle="Modifie Dose" href="' . $assets . '/doctor/editord/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element['id'] .'"><i class="fa fa-lg fa-file-text"></i></a>
-                                                        <a class="btn btn-info btn-flat" href="' . $assets . '/doctor/rdv/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element['id'] .'"><i class="fa fa-lg fa-calendar"></i></a>
-                                                        <a class="btn btn-warning btn-flat" href="' . $assets . '/doctor/creatord/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element['id'] . '"><i class="fa fa-lg fa-pencil-square-o"></i></a>
-                                                        <a class="btn btn-danger btn-flat" href="' . $assets . '/doctor/map/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element['id'] . '"><i class="fa fa-lg fa-map-marker"></i></a>
+                                                        <a class="btn btn-primary btn-flat" data-toggle="Modifie Dose" href="' . $assets . '/doctor/editord/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element[0] .'"><i class="fa fa-lg fa-file-text"></i></a>
+                                                        <a class="btn btn-info btn-flat" href="' . $assets . '/doctor/rdv/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element[0] .'"><i class="fa fa-lg fa-calendar"></i></a>
+                                                        <a class="btn btn-warning btn-flat" href="' . $assets . '/doctor/creatord/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element[0] . '"><i class="fa fa-lg fa-pencil-square-o"></i></a>
+                                                        <a class="btn btn-danger btn-flat" href="' . $assets . '/doctor/map/get=1&nom=' . $element['nom'] . '&prenom=' . $element['prenom'] . '&age=' . age($element['dateNaissace']) . '&id=' . $element[0] . '"><i class="fa fa-lg fa-map-marker"></i></a>
                                                     </div>' .
                                          "</td>";
 
